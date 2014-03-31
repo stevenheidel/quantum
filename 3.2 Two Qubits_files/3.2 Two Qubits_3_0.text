@@ -1,0 +1,6 @@
+Quantum object: dims = [[2, 2], [2, 2]], shape = [4, 4], type = oper, isherm = True
+Qobj data =
+[[ 1.  0.  0.  0.]
+ [ 0.  0.  0.  0.]
+ [ 0.  0.  0.  0.]
+ [ 0.  0.  0.  1.]]
