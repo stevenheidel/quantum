@@ -1,6 +1,8 @@
 from qutip import *
 from scipy import *
+
 from random import randrange
+import sys
 
 def calculate_min_gap(h_b, h_p):
   # Get the number of qubits
@@ -102,14 +104,14 @@ def random_sim(n):
   return calculate_min_gap(base(n), convert_ising(J, h))
 
 num_qubits = int(sys.argv[1])
-num_trials = int(sys.argv[2])
+num_trials = 100*100
 
 count = 0
 
 while count < num_trials:
   res = random_sim(num_qubits)
   
-  # Get rid of boring results
-  if res > 0.0 + 1e-9 and res < 1.0 - 1e-9:
-    print res
-    count += 1
+  print res
+  count += 1
+
+  sys.stderr.write("Completed = " + str(count) + "\n")

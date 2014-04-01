@@ -4,15 +4,24 @@ n = 10
 X = []
 Y = []
 
+def filter_ones(x):
+  return x < 1.0 - 1e-9
+def filter_zeros(x):
+  return x > 0.0 + 1e-9
+
 for i in range(1,n+1):
   with open("data/" + str(i) + ".out") as f:
     floats = map(float, f)
+
+    # Get rid of ones and zeros
+    floats = filter(filter_zeros, floats)
+    floats = filter(filter_ones, floats)
 
     X.extend(tile(i, len(floats)))
 
     Y.extend(floats)
 
-p = poly1d(polyfit(X,Y,4))
+p = poly1d(polyfit(X,Y,3))
 
 xp = linspace(1,n,1000)
 
