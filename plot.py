@@ -17,6 +17,8 @@ for i in range(1,n+1):
     floats = filter(filter_zeros, floats)
     floats = filter(filter_ones, floats)
 
+    print str(len(floats)) + " samples of " + str(i)
+
     X.extend(tile(i, len(floats)))
 
     Y.extend(floats)
