@@ -18,10 +18,10 @@ def calculate_min_gap(h_b, h_p):
   
   min_gap = [+inf]
   def process_rho(tau, psi):
-      H = qobj_list_evaluate(h_t, tau, taumax)
-      evals, ekets = H.eigenstates(eigvals=2)
-              
-      min_gap[0] = min(min_gap[0], evals[1]-evals[0])
+    H = qobj_list_evaluate(h_t, tau, taumax)
+    evals, ekets = H.eigenstates(eigvals=2)
+            
+    min_gap[0] = min(min_gap[0], evals[1]-evals[0])
   
   mesolve(h_t, psi0, taulist, [], process_rho, taumax)
           
@@ -34,16 +34,16 @@ def base(dims):
   sx_list = []
   
   for n in range(dims):
-      op_list = []
-      for m in range(dims):
-          op_list.append(si)
-  
-      op_list[n] = sx
-      sx_list.append(tensor(op_list))
+    op_list = []
+    for m in range(dims):
+      op_list.append(si)
+
+    op_list[n] = sx
+    sx_list.append(tensor(op_list))
   
   h_b = 0
   for n in range(dims):
-      h_b += 0.5 * (1 - sx_list[n])
+    h_b += 0.5 * (1 - sx_list[n])
   
   return h_b
 
@@ -59,30 +59,30 @@ def convert_ising(J, h):
   
   # Convert the J matrix
   for i in range(0, n-1):
-      for j in range(i+1, n):
-          op_list = []
-          
-          for _ in range(n):
-              op_list.append(si)
-          
-          op_list[i] = 0.5 * (1 - sz)
-          op_list[j] = 0.5 * (1 - sz)
-          
-          h_ising += J[i][j] * tensor(op_list)
+    for j in range(i+1, n):
+      op_list = []
+      
+      for _ in range(n):
+        op_list.append(si)
+      
+      op_list[i] = 0.5 * (1 - sz)
+      op_list[j] = 0.5 * (1 - sz)
+      
+      h_ising += J[i][j] * tensor(op_list)
   
   # Convert the h matrix
   for i in range(0, n):
-      op_list = []
-          
-      for _ in range(n):
-          op_list.append(si)
-      
-      op_list[i] = 0.5 * (1 - sz)
-      
-      h_ising += h[i] * tensor(op_list)
+    op_list = []
+        
+    for _ in range(n):
+      op_list.append(si)
+    
+    op_list[i] = 0.5 * (1 - sz)
+    
+    h_ising += h[i] * tensor(op_list)
   
   # Scale so that zero is minimum
-  h_ising = h_ising - h_ising.diag().min()
+  #h_ising = h_ising - h_ising.diag().min()
   
   return h_ising
 
@@ -91,11 +91,11 @@ def random_sim(n):
   h = numpy.zeros(n)
   
   for i in range(0, n-1):
-      for j in range(i+1, n):
-          J[i][j] = randrange(-100, 101)
+    for j in range(i+1, n):
+      J[i][j] = randrange(100)
   
   for i in range(0, n):
-      h[i] = randrange(-100, 101)
+    h[i] = randrange(100)
   
   #print J, h
   
