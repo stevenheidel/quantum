@@ -1,6 +1,7 @@
 from qutip import *
 from scipy import *
 
+from multiprocessing import Pool
 from random import randrange
 import sys
 
@@ -28,7 +29,6 @@ def calculate_min_gap(h_b, h_p):
   mesolve(h_t, psi0, taulist, [], process_rho, taumax)
           
   return min_gap[0]
-
 
 def base(dims):
   si = qeye(2)
@@ -84,7 +84,7 @@ def convert_ising(J, h):
     h_ising += h[i] * tensor(op_list)
   
   # Scale so that zero is minimum
-  #h_ising = h_ising - h_ising.diag().min()
+  h_ising = h_ising - h_ising.diag().min()
   
   return h_ising
 
@@ -94,24 +94,31 @@ def random_sim(n):
   
   for i in range(0, n-1):
     for j in range(i+1, n):
-      J[i][j] = randrange(100)
+      J[i][j] = randrange(-100,100)
   
   for i in range(0, n):
-    h[i] = randrange(100)
+    h[i] = randrange(-100,100)
   
   #print J, h
   
   return calculate_min_gap(base(n), convert_ising(J, h))
 
-num_qubits = int(sys.argv[1])
-num_trials = 100*100
+num_trials = 1000
+base_dir = "data/integers_negpos100/" # with trailing slash
 
-count = 0
+def output_result(num_qubits):
+  count = 0
 
-while count < num_trials:
-  res = random_sim(num_qubits)
-  
-  print res
-  count += 1
+  while count < num_trials:
+    res = random_sim(num_qubits)
+    
+    with open(base_dir + str(num_qubits) + ".out", "a") as outfile:
+      outfile.write(str(res) + "\n")
 
-  sys.stderr.write("Completed = " + str(count) + "\n")
+    count += 1
+
+    sys.stderr.write(str(num_qubits) + ": Completed = " + str(count) + "\n")
+
+if __name__ == '__main__':
+  pool = Pool(processes=12)
+  pool.map(output_result, range(1,13))
