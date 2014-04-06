@@ -84,7 +84,7 @@ def convert_ising(J, h):
     h_ising += h[i] * tensor(op_list)
   
   # Scale so that zero is minimum
-  h_ising = h_ising - h_ising.diag().min()
+  #h_ising = h_ising - h_ising.diag().min()
   
   return h_ising
 
@@ -120,5 +120,6 @@ def output_result(num_qubits):
     sys.stderr.write(str(num_qubits) + ": Completed = " + str(count) + "\n")
 
 if __name__ == '__main__':
-  pool = Pool(processes=12)
-  pool.map(output_result, range(1,13))
+  #pool = Pool(processes=3)
+  #pool.map(output_result, range(10,13))
+  output_result(12)

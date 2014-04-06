@@ -20,7 +20,7 @@ for i in range(1,n+1):
     #floats = filter(filter_zeros, floats)
     #floats = filter(filter_ones, floats)
 
-    #floats = floats[:150]
+    floats = floats[:150]
 
     print str(len(floats)) + " samples of " + str(i)
 
