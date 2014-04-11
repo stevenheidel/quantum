@@ -2,6 +2,7 @@ from pylab import *
 
 base_dir = "data/integers_negpos100/" # with trailing slash
 n = 12
+one = 1
 X = []
 Y = []
 medians = []
@@ -12,7 +13,7 @@ def filter_ones(x):
 def filter_zeros(x):
   return x > 0.0 + 1e-9
 
-for i in range(1,n+1):
+for i in range(one,n+1):
   with open(base_dir + str(i) + ".out") as f:
     floats = map(float, f)
 
@@ -21,6 +22,7 @@ for i in range(1,n+1):
     #floats = filter(filter_ones, floats)
 
     floats = floats[:150]
+    #floats = floats[:1000]
 
     print str(len(floats)) + " samples of " + str(i)
 
@@ -36,11 +38,10 @@ p = poly1d(polyfit(X,Y,2))
 xp = linspace(1,n,1000)
 
 plot(X,Y,'.', xp,p(xp),'-')
-plot(range(1,n+1),medians)
-plot(range(1,n+1),means)
+plot(range(one,n+1),medians)
+plot(range(one,n+1),means)
 xlim(0,n+1)
 xticks(range(1,n+1))
-#show()
 
-plot(xp, 1-p(xp)**2, '-')
+#plot(xp, p(xp)**-2, '-')
 show()
