@@ -120,6 +120,5 @@ def output_result(num_qubits):
     sys.stderr.write(str(num_qubits) + ": Completed = " + str(count) + "\n")
 
 if __name__ == '__main__':
-  #pool = Pool(processes=3)
-  #pool.map(output_result, range(10,13))
-  output_result(12)
+  pool = Pool(processes=8)
+  pool.map(output_result, [12,12,12,12,12,12,12,12])
