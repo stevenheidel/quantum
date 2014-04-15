@@ -71,10 +71,11 @@ p4, = plot(range(one,n+1), means)
 xlim(0, n+1) # add padding left and right
 ylim(0, 1)
 xticks(range(1, n+1)) # show all qubit markers
+
+# Text
+title("Figure 1 - Minimum Eigenvalue Gaps")
 xlabel("# of Qubits")
 ylabel("Minimum Eigenvalue Gap\n(proportional to original eigenvalue gap)", multialignment='center')
-
-# Legend
 legend([p1,p2,p3,p4], ["Samples", "Best fit", "Medians", "Means"], loc=3)
 
 # Plot
@@ -93,10 +94,11 @@ p3, = plot(range(one, n+1), t(means))
 # Now some things to make chart look nice
 xlim(0, n+1) # add padding left and right
 xticks(range(1, n+1)) # show all qubit markers
+
+# Text
+title("Figure 2 - Time Required")
 xlabel("# of Qubits")
 ylabel("Time Required")
-
-# Legend
 legend([p1,p2,p3], ["Best fit", "Medians", "Means"], loc=2)
 
 # Plot
@@ -115,10 +117,11 @@ p3, = plot(range(one, n+1), l(means))
 # Now some things to make chart look nice
 xlim(0, n+1) # add padding left and right
 xticks(range(1, n+1)) # show all qubit markers
+
+# Text
+title("Figure 3 - Time Required (log)")
 xlabel("# of Qubits")
 ylabel("Time Required (log)")
-
-# Legend
 legend([p1,p2,p3], ["Samples", "Medians", "Means"], loc=2)
 
 # Plot
