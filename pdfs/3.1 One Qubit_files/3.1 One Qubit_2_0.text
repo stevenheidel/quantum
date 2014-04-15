@@ -1,4 +1,0 @@
-Quantum object: dims = [[2], [2]], shape = [2, 2], type = oper, isherm = True
-Qobj data =
-[[ 0.5 -0.5]
- [-0.5  0.5]]

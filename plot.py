@@ -1,6 +1,6 @@
 from pylab import *
 
-base_dir = "data/integers_negpos100/" # with trailing slash
+base_dir = "data/corrected_experiment/" # with trailing slash
 n = 12
 one = 1
 X = []

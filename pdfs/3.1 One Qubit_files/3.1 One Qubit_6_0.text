@@ -1,4 +1,0 @@
-Odedata object with mesolve data.
----------------------------------
-states = True, expect = True
-num_expect = 0, num_collapse = 0
